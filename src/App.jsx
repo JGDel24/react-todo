@@ -7,7 +7,7 @@ import TodoList from './TodoList'
 import AddTodoForm from './AddTodoForm'
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <>
