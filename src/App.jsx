@@ -15,10 +15,10 @@ function App() {
     const fetchTodos = new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve({
-          data:{
+          data: {
             todoList: [
-              {id: 1, title: 'Walk the dog'},
-              {id: 2, title: 'Do laundry'}
+              { id: 1, title: 'Walk the dog' },
+              { id: 2, title: 'Do laundry' }
             ]
           }
         })
@@ -36,7 +36,7 @@ function App() {
     if (!isLoading) {
       localStorage.setItem('savedTodoList', JSON.stringify(todoList));
     }
-  }, [todoList, isLoading]) 
+  }, [todoList, isLoading])
 
   function removeTodo(id) {
     const newTodoList = todoList.filter(todo => todo.id !== id);
@@ -51,15 +51,15 @@ function App() {
   return (
     <>
       <h1>To Do List</h1>
-      <AddTodoForm onAddTodo={addTodo}/>
-        {isLoading ? (
-          <p>Loading...</p>) : (
-            <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-          )
-        }
-      
-      
-      </>
+      <AddTodoForm onAddTodo={addTodo} />
+      {isLoading ? (
+        <p>Loading...</p>) : (
+        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+      )
+      }
+
+
+    </>
   )
 }
 
