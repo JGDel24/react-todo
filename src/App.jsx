@@ -18,30 +18,41 @@ function App() {
         Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
       },
     };
-
-    const url = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
-
+  
+    const url = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}?view=Grid%20view&sort[0][field]=Title&sort[0][direction]=asc`;
+  
     try {
       const response = await fetch(url, options);
-
+  
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
       }
-
+  
       const data = await response.json();
-
-      const todos = data.records.map(record => ({
+  
+      
+      const sortedTodos = data.records.sort((a, b) => {
+        const titleA = a.fields.title.toLowerCase();
+        const titleB = b.fields.title.toLowerCase();
+  
+        if (titleA < titleB) return -1;
+        if (titleA > titleB) return 1;
+        return 0;
+      });
+  
+      
+      const todos = sortedTodos.map(record => ({
         title: record.fields.title,
         id: record.id,
       }));
-
+  
       setTodoList(todos);
       setIsLoading(false);
     } catch (error) {
       console.error(`Error fetching data: ${error.message}`);
     }
   }
-
+  
   useEffect(() => {
     fetchData();
   }, []);
