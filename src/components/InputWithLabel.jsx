@@ -27,7 +27,7 @@ function InputWithLabel({ id, value, onChange, children }) {
   )
 }
 
-InputWithLabel.prototypes = {
+InputWithLabel.protoTypes = {
   id: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onchange: PropTypes.func.isRequired,
