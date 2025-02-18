@@ -1,56 +1,27 @@
-import React from 'react'
-import InputWithLabel from './InputWithLabel';
-import { useState } from 'react';
-import PropTypes from "prop-types";
+import { useState } from 'react'
 
+function AddTodoForm({ onAddTodo }) {
+  const [todo, setTodo] = useState('')
 
-function AddTodoForm({onAddTodo}) {
-
-    const [todoTitle,  setTodoTitle] = useState('');
-
-    function handleTitleChange(event) {
-        const newTodoTitle = event.target.value;
-
-        setTodoTitle(newTodoTitle);
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (todo) {
+      onAddTodo({ title: todo })
+      setTodo('')
     }
+  }
 
-    function handleAddTodo(event) {
-        event.preventDefault();
-        
-        console.log(todoTitle);
-        onAddTodo({title: todoTitle, id: Date.now()})
-        setTodoTitle('');
-
-
-    }
-    
-    return (
-        <form onSubmit={handleAddTodo}>
-      <InputWithLabel
-        id="todoTitle"
-        value={todoTitle}
-        onChange={handleTitleChange}
-        >
-          Title
-        </InputWithLabel>
-        
-        
-
-
-        
-      <button type="submit">Add</button>
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={todo}
+        onChange={(e) => setTodo(e.target.value)}
+        required
+      />
+      <button type="submit">Add Todo</button>
     </form>
-      
-            
-           
-    )
+  )
 }
-
-AddTodoForm.propTypes = {
-  onAddTodo: PropTypes.func.isRequired,
-};
-
-
-
 
 export default AddTodoForm
