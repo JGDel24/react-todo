@@ -72,6 +72,23 @@ function App() {
     }
   };
 
+  const removeTodo = async (id) => {
+    try {
+      await fetch(
+        `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}/${id}`,
+        {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
+          },
+        }
+      );
+      setTodoList((prevList) => prevList.filter((todo) => todo.id !== id));
+    } catch (error) {
+      console.error('Error removing todo:', error);
+    }
+  };
+
   return (
     <Router>
       <div>
@@ -85,7 +102,7 @@ function App() {
                 {isLoading ? (
                   <p>Loading...</p>
                 ) : (
-                  <TodoList todoList={todoList} />
+                  <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
                 )}
               </div>
             }
@@ -98,7 +115,7 @@ function App() {
                 {isLoading ? (
                   <p>Loading...</p>
                 ) : (
-                  <TodoList todoList={todoList} />
+                  <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
                 )}
               </div>
             }
