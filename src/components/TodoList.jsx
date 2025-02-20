@@ -1,4 +1,4 @@
-import TodoListItem from './TodoListItem'
+import TodoListItem from './TodoListItem';
 
 function TodoList({ todoList, onRemoveTodo }) {
   return (
@@ -7,7 +7,7 @@ function TodoList({ todoList, onRemoveTodo }) {
         <TodoListItem key={todo.id} todo={todo} onRemoveTodo={onRemoveTodo} />
       ))}
     </ul>
-  )
+  );
 }
 
-export default TodoList
+export default TodoList;
