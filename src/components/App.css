@@ -2,6 +2,13 @@ body {
   background-color: gray;
   font-family: sans-serif;
   color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  flex-direction: column;
+  text-align: center;
 }
 
 h1 {
@@ -17,6 +24,8 @@ nav {
   gap: 20px;
   padding: 10px;
   background-color: lightgreen;
+  width: 100%;
+  justify-content: space-around;
 }
 
 button {
@@ -47,7 +56,16 @@ h2, h3 {
   color: darkblue;
 }
 
-@media  (max-width: 600px) {
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 10px 0;
+}
+
+@media (max-width: 600px) {
   h1 {
     font-size: 18px;
   }
