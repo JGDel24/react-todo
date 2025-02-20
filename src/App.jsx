@@ -5,7 +5,7 @@ import TodoList from './components/TodoList';
 import PropTypes from 'prop-types';
 import './components/App.css';
 
-function App() {
+ function App() {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
